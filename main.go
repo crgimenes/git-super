@@ -43,11 +43,6 @@ func gitExec(path string) (err error) {
 		return
 	}
 
-	err = execHelper(path, "git", "checkout", "master")
-	if err != nil {
-		return
-	}
-
 	err = execHelper(path, "git", "pull")
 	if err != nil {
 		return
@@ -63,10 +58,6 @@ func visit(path string, file os.FileInfo, perr error) error {
 
 	if !file.IsDir() {
 		return nil
-	}
-
-	if file.Name() == "vendor" {
-		return filepath.SkipDir
 	}
 
 	fs := folderExists(path + "/.git")
