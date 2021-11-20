@@ -1,0 +1,2 @@
+# git-pa
+pull all
