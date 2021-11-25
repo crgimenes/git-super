@@ -1,3 +1,3 @@
-module github.com/crgimenes/git-pa
+module github.com/crgimenes/git-super
 
 go 1.17
