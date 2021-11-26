@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source "$(git --exec-path)/git-sh-setup"
+
+function _pull() {
+    REPO=$(dirname "$1")
+    echo "${REPO}"
+    git pull
+}
+
+find . -name .git | while read -r repo; do 
+    _pull "${repo}"
+done
+
+
