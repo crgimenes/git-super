@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# . "$(git --exec-path)/git-sh-setup"
-
 function run() {
     find . -name .git | while read -r dot_git; do 
         REPO=$(dirname "${dot_git}")
@@ -9,6 +7,7 @@ function run() {
         echo "➔ ${REPO}"
         echo "git $*"
         git $*
+        cd -
     done
 }
 
