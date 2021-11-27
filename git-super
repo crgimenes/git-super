@@ -1,15 +1,29 @@
 #!/bin/bash
 
-source "$(git --exec-path)/git-sh-setup"
+. "$(git --exec-path)/git-sh-setup"
 
-function _pull() {
-    REPO=$(dirname "$1")
-    echo "${REPO}"
-    git pull
+function run() {
+    find . -name .git | while read -r dot_git; do 
+        REPO=$(dirname "${dot_git}")
+        cd "${REPO}" || die "can't access ${REPO}"
+        echo "➔ ${REPO}"
+        echo "running: $*"
+        $*
+    done
 }
 
-find . -name .git | while read -r repo; do 
-    _pull "${repo}"
-done
+case $1 in
+    pull)
+        echo "git pull"
+        run git pull
+    ;;
+    stash)
+        echo "git stash"
+    ;;
+    *)
+        echo "cmd: $*"
+    ;;
+esac
+
 
 
