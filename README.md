@@ -1,2 +1,2 @@
-# git-pa
+# git-supper
 pull all
